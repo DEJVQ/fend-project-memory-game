@@ -10,7 +10,7 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function from    http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -25,6 +25,61 @@ function shuffle(array) {
     return array;
 }
 
+var listOfCards = [];
+listOfCards[1] =`<li class="card">
+                    <i class="fa fa-diamond"></i>
+                 </li>`;
+listOfCards[2] =`<li class="card">
+                    <i class="fa fa-paper-plane-o"></i>
+                </li>`;
+listOfCards[3] =`<li class="card match">
+                    <i class="fa fa-anchor"></i>
+                </li>`;
+listOfCards[4] =`<li class="card">
+                    <i class="fa fa-bolt"></i>
+                </li>`;
+listOfCards[5] =`<li class="card">
+                    <i class="fa fa-cube"></i>
+                </li>`;
+listOfCards[6] =`<li class="card match">
+                <i class="fa fa-anchor"></i>
+                </li>`;
+listOfCards[7] =`<li class="card">
+                    <i class="fa fa-leaf"></i>
+                </li>`;
+listOfCards[8] =`<li class="card">
+                    <i class="fa fa-bicycle"></i>
+                </li>`;
+listOfCards[9] =`<li class="card">
+                    <i class="fa fa-diamond"></i>
+                </li>`;
+listOfCards[10] =`<li class="card">
+                    <i class="fa fa-bomb"></i>
+                </li>`;
+listOfCards[11] =`<li class="card">
+                    <i class="fa fa-leaf"></i>
+                </li>`;
+listOfCards[12] =`<li class="card">
+                    <i class="fa fa-bomb"></i>
+                </li>`;
+listOfCards[13] =`<li class="card open show">
+                    <i class="fa fa-bolt"></i>
+                </li>`;
+listOfCards[14] =`<li class="card">
+                    <i class="fa fa-bicycle"></i>
+                </li>`;
+listOfCards[15] =`<li class="card">
+                    <i class="fa fa-paper-plane-o"></i>
+                </li>`;
+listOfCards[16] =`<li class="card">
+                    <i class="fa fa-cube"></i>
+                </li>`;
+
+const shuffledCards = shuffle(listOfCards);
+const shuffledCardsString = shuffledCards.join("");
+const deck = document.querySelector(".deck");
+
+deck.innerHTML = shuffledCardsString;
 
 /*
  * set up the event listener for a card. If a card is clicked:
