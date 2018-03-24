@@ -91,3 +91,11 @@ deck.innerHTML = shuffledCardsString;
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+var card = document.querySelectorAll(".card");
+
+for (let i = 0; i < card.length; i++) {
+    card[i].addEventListener("click", function() {
+        this.classList.add("show");
+    });
+}
+
