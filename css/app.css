@@ -81,6 +81,22 @@ h1 {
     font-size: 33px;
 }
 
+.final-score {
+    width: 660px;
+    min-height: 680px;
+    top: 10%;
+    padding-top: 16%;
+    position: absolute;
+    border-radius: 10px;
+    background: #fcfcfc;
+    border: 3px solid #eee;
+    text-align: center;
+    z-index: -1;
+}
+.final-score.final-score-show {
+    z-index: 1;
+}
+
 /*
  * Styles for the Score Panel
  */

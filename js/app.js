@@ -88,11 +88,12 @@ deck.innerHTML = shuffledCardsString;
  |*  - if the list already has another card, check to see if the two cards match
  |*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  |*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ |*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 const card = document.querySelectorAll(".card");
 const moves = document.querySelector(".moves");
+const finalScore = document.querySelector(".final-score");
 
 let cardList = [];
 let click = 0;
@@ -112,8 +113,11 @@ for (let i = 0; i < card.length; i++) {
                 lockCards();
             }
             else if (cardList[cardList.length-1].innerHTML != cardList[cardList.length-2].innerHTML){
-                setTimeout(removeCards, 1000);
+                setTimeout(removeCards, 700);
             }
+        }
+        if ((cardList.length) == 16) {
+            displayFinalScore();
         }
     });
     
@@ -141,5 +145,8 @@ for (let i = 0; i < card.length; i++) {
     }
     function countMoves() {
         moves.textContent = parseInt(click/2);
+    }
+    function displayFinalScore() {
+        finalScore.classList.add("final-score-show");
     }
 }
