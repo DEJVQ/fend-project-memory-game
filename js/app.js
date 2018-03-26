@@ -28,11 +28,11 @@ function shuffle(array) {
 var listOfCards = [];
 listOfCards[1] =`<li class="card">
                     <i class="fa fa-diamond"></i>
-                 </li>`;
+                </li>`;
 listOfCards[2] =`<li class="card">
                     <i class="fa fa-paper-plane-o"></i>
                 </li>`;
-listOfCards[3] =`<li class="card match">
+listOfCards[3] =`<li class="card">
                     <i class="fa fa-anchor"></i>
                 </li>`;
 listOfCards[4] =`<li class="card">
@@ -41,8 +41,8 @@ listOfCards[4] =`<li class="card">
 listOfCards[5] =`<li class="card">
                     <i class="fa fa-cube"></i>
                 </li>`;
-listOfCards[6] =`<li class="card match">
-                <i class="fa fa-anchor"></i>
+listOfCards[6] =`<li class="card">
+                    <i class="fa fa-anchor"></i>
                 </li>`;
 listOfCards[7] =`<li class="card">
                     <i class="fa fa-leaf"></i>
@@ -62,7 +62,7 @@ listOfCards[11] =`<li class="card">
 listOfCards[12] =`<li class="card">
                     <i class="fa fa-bomb"></i>
                 </li>`;
-listOfCards[13] =`<li class="card open show">
+listOfCards[13] =`<li class="card">
                     <i class="fa fa-bolt"></i>
                 </li>`;
 listOfCards[14] =`<li class="card">
@@ -93,9 +93,64 @@ deck.innerHTML = shuffledCardsString;
  */
 var card = document.querySelectorAll(".card");
 
+let compare_1;
+let compare_2;
+
+let storeFirstClick;
+
 for (let i = 0; i < card.length; i++) {
+    card[i].classList.add("show", "open");
     card[i].addEventListener("click", function() {
-        this.classList.add("show");
+        this.classList.add("show", "open");
+        if (compare_1 == undefined) {
+            compare_1 = card[i].innerHTML;
+        }
+        else if (compare_2 == undefined) {
+            compare_2 = card[i].innerHTML;
+        }
+        if(storeFirstClick == undefined) {
+            storeFirstClick = card[i];
+        }
+        
+        console.log(compare_1);
+        console.log(compare_2);
+        if (compare_1 == compare_2) {
+            console.log("Match");
+            storeFirstClick.classList.add("match");
+            card[i].classList.add("match");
+        }
     });
+    
 }
 
+/* Compare backup */
+//var card = document.querySelectorAll(".card");
+//
+//let compare_1 = "";
+//let compare_2 = "";
+//
+//let storeFirstClick;
+//
+//for (let i = 0; i < card.length; i++) {
+//    card[i].addEventListener("click", function() {
+//        this.classList.add("show", "open");
+//        if (compare_1 == "") {
+//            compare_1 += this.innerHTML;
+//        }
+//        else if (compare_2 == "") {
+//            compare_2 += this.innerHTML;
+//        }
+//        
+//        if(storeFirstClick == undefined) {
+//            storeFirstClick = card[i];
+//        }
+//        console.log(compare_1);
+//        console.log(compare_2);
+//        if (compare_1 == compare_2) {
+//            console.log("Match");
+//            storeFirstClick.classList.add("match");
+//            card[i].classList.add("match");
+//        }
+//    });
+//    
+//}
