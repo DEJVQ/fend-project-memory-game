@@ -96,17 +96,23 @@ const moves = document.querySelectorAll(".moves");
 const finalScore = document.querySelector(".final-score");
 const restart = document.querySelector(".restart");
 
+let preventMultiClick = document.createElement("div");
+preventMultiClick.classList.add("non-clickable");
+
 let cardList = [];
 let click = 0;
 
 for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener("click", function clickCards() {
+    card[i].addEventListener("click", function clickCards(e) {
         
         preventDoubleClick();
         displaySymbol();
         addCardToList();
         if (document.querySelectorAll(".show").length == 2) {
-            //alert("dsa");
+            deck.appendChild(preventMultiClick);
+            setTimeout(function() {
+                deck.removeChild(preventMultiClick);
+            }, 700);
         }
         
         click++;
