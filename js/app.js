@@ -97,11 +97,15 @@ let cardList = [];
 let click = 0;
 
 for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener("click", function() {
+    card[i].addEventListener("click", function clickCards() {
+        preventDoubleClick();
         displaySymbol();
         addCardToList();
+        
         click++;
         console.log(cardList);
+        console.log(card[i]);
+        
         
         if(click%2 == 0 && cardList.length != 0) {
             if(cardList[cardList.length-1].innerHTML == cardList[cardList.length-2].innerHTML) {
@@ -131,34 +135,9 @@ for (let i = 0; i < card.length; i++) {
         cardList.pop();
         cardList.pop();
     }
+    function preventDoubleClick() {
+        if (card[i].classList.contains("show")) {
+            card[i].removeEventListener("click", clickCards);
+        }
+    }
 }
-
-
-
-
-/* Backup
-var card = document.querySelectorAll(".card");
-
-let compare_1;
-let compare_2;
-let storeFirstClick;
-
-for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener("click", function() {
-        this.classList.add("show", "open");
-        if (compare_1 == undefined) {
-            compare_1 = card[i].innerHTML;
-        }
-        else if (compare_2 == undefined) {
-            compare_2 = card[i].innerHTML;
-        }
-        if(storeFirstClick == undefined) {
-            storeFirstClick = card[i];
-        }
-        
-        if (compare_1 == compare_2) {
-            storeFirstClick.classList.add("match");
-            card[i].classList.add("match");
-        }
-    });
-} */
