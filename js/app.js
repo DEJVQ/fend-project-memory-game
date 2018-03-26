@@ -94,6 +94,7 @@ deck.innerHTML = shuffledCardsString;
 const card = document.querySelectorAll(".card");
 const moves = document.querySelector(".moves");
 const finalScore = document.querySelector(".final-score");
+const restart = document.querySelector(".restart");
 
 let cardList = [];
 let click = 0;
@@ -149,4 +150,13 @@ for (let i = 0; i < card.length; i++) {
     function displayFinalScore() {
         finalScore.classList.add("final-score-show");
     }
+    
 }
+restart.addEventListener("click" , function() {
+    moves.textContent = 0;
+    click = 0;
+    for (let j = 0; j < card.length; j++) {
+        card[j].className = "card";
+    }
+    cardList[j].pop();
+});
