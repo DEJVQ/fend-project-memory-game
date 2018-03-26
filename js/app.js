@@ -92,7 +92,7 @@ deck.innerHTML = shuffledCardsString;
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 const card = document.querySelectorAll(".card");
-const moves = document.querySelector(".moves");
+const moves = document.querySelectorAll(".moves");
 const finalScore = document.querySelector(".final-score");
 const restart = document.querySelector(".restart");
 
@@ -105,6 +105,9 @@ for (let i = 0; i < card.length; i++) {
         preventDoubleClick();
         displaySymbol();
         addCardToList();
+        if (document.querySelectorAll(".show").length == 2) {
+            //alert("dsa");
+        }
         
         click++;
         countMoves();
@@ -145,7 +148,8 @@ for (let i = 0; i < card.length; i++) {
         }
     }
     function countMoves() {
-        moves.textContent = parseInt(click/2);
+        moves[0].textContent = parseInt(click/2);
+        moves[1].textContent = parseInt(click/2);
     }
     function displayFinalScore() {
         finalScore.classList.add("final-score-show");
@@ -155,8 +159,10 @@ for (let i = 0; i < card.length; i++) {
 restart.addEventListener("click" , function() {
     moves.textContent = 0;
     click = 0;
+    moves[0].textContent = 0;
+    moves[1].textContent = 0;
     for (let j = 0; j < card.length; j++) {
         card[j].className = "card";
+        cardList = [];
     }
-    cardList[j].pop();
 });
