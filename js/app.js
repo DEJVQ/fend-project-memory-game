@@ -25,7 +25,7 @@ function shuffle(array) {
     return array;
 }
 
-var listOfCards = [];
+const listOfCards = [];
 listOfCards[1] =`<li class="card">
                     <i class="fa fa-diamond"></i>
                 </li>`;
@@ -108,6 +108,7 @@ for (let i = 0; i < card.length; i++) {
         preventDoubleClick();
         displaySymbol();
         addCardToList();
+        
         if (document.querySelectorAll(".show").length == 2) {
             deck.appendChild(preventMultiClick);
             setTimeout(function() {
@@ -141,6 +142,8 @@ for (let i = 0; i < card.length; i++) {
     function lockCards() {
         cardList[cardList.length-1].classList.add("match");
         cardList[cardList.length-2].classList.add("match");
+        cardList[cardList.length-1].classList.remove("show", "open");
+        cardList[cardList.length-2].classList.remove("show", "open");
     }
     function removeCards() {
         cardList[cardList.length-1].classList.remove("show", "open");
