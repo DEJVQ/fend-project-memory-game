@@ -91,21 +91,21 @@ deck.innerHTML = shuffledCardsString;
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-var card = document.querySelectorAll(".card");
+const card = document.querySelectorAll(".card");
+const moves = document.querySelector(".moves");
 
 let cardList = [];
 let click = 0;
 
 for (let i = 0; i < card.length; i++) {
     card[i].addEventListener("click", function clickCards() {
+        
         preventDoubleClick();
         displaySymbol();
         addCardToList();
         
         click++;
-        console.log(cardList);
-        console.log(card[i]);
-        
+        countMoves();
         
         if(click%2 == 0 && cardList.length != 0) {
             if(cardList[cardList.length-1].innerHTML == cardList[cardList.length-2].innerHTML) {
@@ -115,7 +115,6 @@ for (let i = 0; i < card.length; i++) {
                 setTimeout(removeCards, 1000);
             }
         }
-        
     });
     
     function displaySymbol() {
@@ -139,5 +138,8 @@ for (let i = 0; i < card.length; i++) {
         if (card[i].classList.contains("show")) {
             card[i].removeEventListener("click", clickCards);
         }
+    }
+    function countMoves() {
+        moves.textContent = parseInt(click/2);
     }
 }
