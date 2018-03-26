@@ -99,14 +99,20 @@ for (let i = 0; i < card.length; i++) {
     card[i].addEventListener("click", function() {
         displaySymbol();
         addCardToList();
+        
+        if(cardList.length != 0) {
+            if(cardList[cardList.length-1] == cardList[cardList.length-2]) {
+                console.log("match");
+            }
+        }
     });
     
     function displaySymbol() {
         card[i].classList.add("show", "open");
     }
+    
     function addCardToList() {
         cardList.push(card[i]);
-        console.log(cardList);
     }
 }
 
