@@ -143,21 +143,13 @@ for (let i = 0; i < card.length; i++) {
         }
         
         /* Rate the game */
-        if (click == 30 ) {
-            stars[4].parentNode.removeChild(stars[4]);
-            stars[9].parentNode.removeChild(stars[9]);
-        }
-        else if (click == 40) {
-            stars[3].parentNode.removeChild(stars[3]);
-            stars[8].parentNode.removeChild(stars[8]);
-        }
-        else if (click == 50) {
+        if (click == 40 ) {
             stars[2].parentNode.removeChild(stars[2]);
-            stars[7].parentNode.removeChild(stars[7]);
+            stars[5].parentNode.removeChild(stars[5]);
         }
         else if (click == 60) {
             stars[1].parentNode.removeChild(stars[1]);
-            stars[6].parentNode.removeChild(stars[6]);
+            stars[4].parentNode.removeChild(stars[4]);
         }
     });
     
@@ -239,7 +231,7 @@ restart.addEventListener("click" , function(e) {
             }
         }
         
-        for (let l = 0; l < 5; l++) {
+        for (let l = 0; l < 3; l++) {
             starsAddMain.children[l].innerHTML = star;
             starsAddFinal.children[l].innerHTML = star;
             stars = document.querySelectorAll(".fa-star");
