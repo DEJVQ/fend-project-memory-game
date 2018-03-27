@@ -1,20 +1,24 @@
 # Memory Game Project
 
-## Table of Contents
+This project is done in the Google Nanodegree Front-end course.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## Basic version
 
-## Instructions
+The basic version includes html / css and entry js starter file with `shuffle function` - forked from [https://github.com/udacity/fend-project-memory-game]
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Project version
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The project version contains the JS code with full functionality of memory game.
 
-## Contributing
+Game behavior:
+* Randomly shuffles the cards and user win when all cards are matched.
+* Congratulation Pop-up when user win the game
+* Restart button to reset the board and scores
+* Star rating based on counting moves
+* Timer
+* Move counter
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+In the game there are some CSS styles added in order to present the game smoothness.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
