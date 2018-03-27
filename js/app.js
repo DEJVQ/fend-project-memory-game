@@ -93,7 +93,12 @@ deck.innerHTML = shuffledCardsString;
  */
 const card = document.querySelectorAll(".card");
 const moves = document.querySelectorAll(".moves");
-const stars = document.querySelectorAll(".fa-star");
+
+let stars = document.querySelectorAll(".fa-star");
+const star = stars[0].outerHTML;
+let starsAddMain = document.querySelector(".score-panel .stars");
+let starsAddFinal = document.querySelector(".final-score .stars");
+
 const finalScore = document.querySelector(".final-score");
 const restart = document.querySelector(".restart");
 
@@ -184,6 +189,7 @@ for (let i = 0; i < card.length; i++) {
     
 }
 restart.addEventListener("click" , function(e) {
+    stars = document.querySelectorAll(".fa-star");
     if (card.length == 16) {
         finalScore.classList.remove("final-score-show");
     }
@@ -195,5 +201,15 @@ restart.addEventListener("click" , function(e) {
         card[j].className = "card";
         cardList = [];
     }
-    
+    if (stars.length < 10) {
+        for (let k = 0; k <= 7; k++) {
+            console.log(k);
+            stars[k].parentNode.removeChild(stars[k]);
+            console.log(stars);
+        }
+        for (let l = 0; l < 5; l++) {
+            starsAddMain.children[l].innerHTML = star;
+            starsAddFinal.children[l].innerHTML = star;
+        }
+    }
 });
