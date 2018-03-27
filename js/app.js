@@ -122,13 +122,15 @@ for (let i = 0; i < card.length; i++) {
         
         /* Start Stopwatch */
         if (click == 1) {
-            timer();
+            timeInterval();
         }
         
         /* Compare Two cards */
         if(click%2 == 0 && cardList.length != 0) {
             if(cardList[cardList.length-1].innerHTML == cardList[cardList.length-2].innerHTML) {
                 lockCards();
+                cardList[cardList.length-1].removeEventListener("click", clickCards);
+                cardList[cardList.length-2].removeEventListener("click", clickCards);
             }
             else if (cardList[cardList.length-1].innerHTML != cardList[cardList.length-2].innerHTML){
                 setTimeout(removeCards, 700);
@@ -175,6 +177,7 @@ for (let i = 0; i < card.length; i++) {
         cardList[cardList.length-2].classList.add("match");
         cardList[cardList.length-1].classList.remove("show", "open");
         cardList[cardList.length-2].classList.remove("show", "open");
+        
     }
     
     /* Remove dismatched cards */
@@ -201,8 +204,9 @@ for (let i = 0; i < card.length; i++) {
     /* Display final score */
     function displayFinalScore() {
         finalScore.classList.add("final-score-show");
-        clearTimeout(t);
-        var finalTime = document.querySelector(".stopwatch-final");
+        
+        clearTimeout(tick);
+        let finalTime = document.querySelector(".stopwatch-final");
         finalTime.textContent = stopwatch.textContent;
     }
     
@@ -247,14 +251,14 @@ restart.addEventListener("click" , function(e) {
     
     /* Restart StopWatch */
     stopwatch.textContent = "00:00:00";
-    seconds = 0; minutes = 0; hours = 0;
-    clearTimeout(t);
+    seconds = 0; 
+    minutes = 0; 
+    hours = 0;
+    clearTimeout(tick);
 });
     
-    
-/* Stopwatch from https://jsfiddle.net/Daniel_Hug/pvk6p/ */
 
-function add() {
+function countTime() {
     seconds++;
     if (seconds >= 60) {
         seconds = 0;
@@ -264,11 +268,14 @@ function add() {
             hours++;
         }
     }
+    
     stopwatch.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    timer();
+    
+    timeInterval();
 }
-function timer() {
-    t = setTimeout(add, 1000);
+    
+function timeInterval() {
+    tick = setTimeout(countTime, 1000);
 }
  
 }
