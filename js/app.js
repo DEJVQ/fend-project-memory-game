@@ -89,10 +89,11 @@ deck.innerHTML = shuffledCardsString;
  |*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  |*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  |*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ |*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 const card = document.querySelectorAll(".card");
 const moves = document.querySelectorAll(".moves");
+const stars = document.querySelectorAll(".fa-star");
 const finalScore = document.querySelector(".final-score");
 const restart = document.querySelector(".restart");
 
@@ -130,6 +131,23 @@ for (let i = 0; i < card.length; i++) {
         if ((cardList.length) == 16) {
             displayFinalScore();
         }
+        
+        if (click == 26 ) {
+            stars[4].parentNode.removeChild(stars[4]);
+            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+        }
+        else if (click == 36) {
+            stars[3].parentNode.removeChild(stars[3]);
+            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+        }
+        else if (click == 40) {
+            stars[2].parentNode.removeChild(stars[2]);
+            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+        }
+        else if (click == 48) {
+            stars[1].parentNode.removeChild(stars[1]);
+            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+        }
     });
     
     function displaySymbol() {
@@ -165,7 +183,10 @@ for (let i = 0; i < card.length; i++) {
     }
     
 }
-restart.addEventListener("click" , function() {
+restart.addEventListener("click" , function(e) {
+    if (card.length == 16) {
+        // To test - e.stopPropagation();
+    }
     moves.textContent = 0;
     click = 0;
     moves[0].textContent = 0;
