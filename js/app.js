@@ -137,7 +137,7 @@ for (let i = 0; i < card.length; i++) {
             displayFinalScore();
         }
         
-        if (click == 30 ) {
+        if (click == 5 ) {
             stars[4].parentNode.removeChild(stars[4]);
             stars[9].parentNode.removeChild(stars[9]);
         }
@@ -190,6 +190,7 @@ for (let i = 0; i < card.length; i++) {
 }
 restart.addEventListener("click" , function(e) {
     stars = document.querySelectorAll(".fa-star");
+    
     if (card.length == 16) {
         finalScore.classList.remove("final-score-show");
     }
@@ -202,14 +203,16 @@ restart.addEventListener("click" , function(e) {
         cardList = [];
     }
     if (stars.length < 10) {
-        for (let k = 0; k <= 7; k++) {
-            console.log(k);
-            stars[k].parentNode.removeChild(stars[k]);
-            console.log(stars);
+        for (let k = stars.length-1; k >= 0; k--) {
+            if (stars[k].parentNode) {
+                stars[k].parentNode.removeChild(stars[k]);
+            }
         }
+        
         for (let l = 0; l < 5; l++) {
             starsAddMain.children[l].innerHTML = star;
             starsAddFinal.children[l].innerHTML = star;
+            stars = document.querySelectorAll(".fa-star");
         }
     }
 });
