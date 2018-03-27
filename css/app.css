@@ -106,11 +106,11 @@ h1 {
     background: #fcfcfc;
     border: 3px solid #eee;
     text-align: center;
-    z-index: -1;
+    transform: rotateX(90deg);
     transition: 0.2s;
 }
 .final-score.final-score-show {
-    z-index: 1;
+    transform: rotateX(0deg);
 }
 
 /*

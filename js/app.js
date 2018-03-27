@@ -132,21 +132,21 @@ for (let i = 0; i < card.length; i++) {
             displayFinalScore();
         }
         
-        if (click == 26 ) {
+        if (click == 30 ) {
             stars[4].parentNode.removeChild(stars[4]);
-            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
-        }
-        else if (click == 36) {
-            stars[3].parentNode.removeChild(stars[3]);
-            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+            stars[9].parentNode.removeChild(stars[9]);
         }
         else if (click == 40) {
-            stars[2].parentNode.removeChild(stars[2]);
-            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+            stars[3].parentNode.removeChild(stars[3]);
+            stars[8].parentNode.removeChild(stars[8]);
         }
-        else if (click == 48) {
+        else if (click == 50) {
+            stars[2].parentNode.removeChild(stars[2]);
+            stars[7].parentNode.removeChild(stars[7]);
+        }
+        else if (click == 60) {
             stars[1].parentNode.removeChild(stars[1]);
-            stars[stars.length-1].parentNode.removeChild(stars[stars.length-1]);
+            stars[6].parentNode.removeChild(stars[6]);
         }
     });
     
@@ -185,7 +185,7 @@ for (let i = 0; i < card.length; i++) {
 }
 restart.addEventListener("click" , function(e) {
     if (card.length == 16) {
-        // To test - e.stopPropagation();
+        finalScore.classList.remove("final-score-show");
     }
     moves.textContent = 0;
     click = 0;
@@ -195,4 +195,5 @@ restart.addEventListener("click" , function(e) {
         card[j].className = "card";
         cardList = [];
     }
+    
 });
