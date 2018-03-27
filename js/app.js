@@ -10,6 +10,10 @@
  *   - add each card's HTML to the page
  */
 
+startMatchinGame();
+
+function startMatchinGame() {
+
 // Shuffle function from    http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -91,20 +95,20 @@ deck.innerHTML = shuffledCardsString;
  |*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  |*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-const card = document.querySelectorAll(".card");
+let card = document.querySelectorAll(".card");
 const moves = document.querySelectorAll(".moves");
 
 let stars = document.querySelectorAll(".fa-star");
 const star = stars[0].outerHTML;
-let starsAddMain = document.querySelector(".score-panel .stars");
-let starsAddFinal = document.querySelector(".final-score .stars");
+const starsAddMain = document.querySelector(".score-panel .stars");
+const starsAddFinal = document.querySelector(".final-score .stars");
 
 const finalScore = document.querySelector(".final-score");
 const restart = document.querySelector(".restart");
 
-let preventMultiClick = document.createElement("div");
+const preventMultiClick = document.createElement("div");
 preventMultiClick.classList.add("non-clickable");
-
+ 
 let cardList = [];
 let click = 0;
 
@@ -137,7 +141,7 @@ for (let i = 0; i < card.length; i++) {
             displayFinalScore();
         }
         
-        if (click == 5 ) {
+        if (click == 30 ) {
             stars[4].parentNode.removeChild(stars[4]);
             stars[9].parentNode.removeChild(stars[9]);
         }
@@ -215,4 +219,8 @@ restart.addEventListener("click" , function(e) {
             stars = document.querySelectorAll(".fa-star");
         }
     }
+    
+    
+    setTimeout(startMatchinGame, 300);
 });
+}
