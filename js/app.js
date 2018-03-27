@@ -1,18 +1,7 @@
-/*
- * Create a list that holds all of your cards
- */
+startMatchingGame();
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-startMatchinGame();
-
-function startMatchinGame() {
+/* Main function to start */
+function startMatchingGame() {
 
 // Shuffle function from    http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -29,6 +18,7 @@ function shuffle(array) {
     return array;
 }
 
+/* Declare list of Card */
 const listOfCards = [];
 listOfCards[1] =`<li class="card">
                     <i class="fa fa-diamond"></i>
@@ -79,22 +69,15 @@ listOfCards[16] =`<li class="card">
                     <i class="fa fa-cube"></i>
                 </li>`;
 
+/* Shuffle Cards and display it*/
 const shuffledCards = shuffle(listOfCards);
 const shuffledCardsString = shuffledCards.join("");
 const deck = document.querySelector(".deck");
 
 deck.innerHTML = shuffledCardsString;
 
-/*
- |* set up the event listener for a card. If a card is clicked:
- |*  - display the card's symbol (put this functionality in another function that you call from this one)
- |*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- |*  - if the list already has another card, check to see if the two cards match
- |*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- |*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- |*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- |*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
+/* Declare const and variables */
 let card = document.querySelectorAll(".card");
 const moves = document.querySelectorAll(".moves");
 
@@ -112,13 +95,21 @@ preventMultiClick.classList.add("non-clickable");
 let cardList = [];
 let click = 0;
 
+let stopwatch = document.querySelector(".stopwatch")
+let seconds = 0, minutes = 0, hours = 0, t;
+
+    
+
+
 for (let i = 0; i < card.length; i++) {
+    /* Card on click Event */
     card[i].addEventListener("click", function clickCards(e) {
         
         preventDoubleClick();
         displaySymbol();
         addCardToList();
         
+        /* Prevent Multiple clicks of cards in deck */
         if (document.querySelectorAll(".show").length == 2) {
             deck.appendChild(preventMultiClick);
             setTimeout(function() {
@@ -129,6 +120,12 @@ for (let i = 0; i < card.length; i++) {
         click++;
         countMoves();
         
+        /* Start Stopwatch */
+        if (click == 1) {
+            timer();
+        }
+        
+        /* Compare Two cards */
         if(click%2 == 0 && cardList.length != 0) {
             if(cardList[cardList.length-1].innerHTML == cardList[cardList.length-2].innerHTML) {
                 lockCards();
@@ -137,10 +134,13 @@ for (let i = 0; i < card.length; i++) {
                 setTimeout(removeCards, 700);
             }
         }
+        
+        /* Display Final Score */
         if ((cardList.length) == 16) {
             displayFinalScore();
         }
         
+        /* Rate the game */
         if (click == 30 ) {
             stars[4].parentNode.removeChild(stars[4]);
             stars[9].parentNode.removeChild(stars[9]);
@@ -159,53 +159,75 @@ for (let i = 0; i < card.length; i++) {
         }
     });
     
+    /* Display card symbol */
     function displaySymbol() {
         card[i].classList.add("show", "open");
     }
     
+    /* Add card to list */
     function addCardToList() {
         cardList.push(card[i]);
     }
+    
+    /* Match cards and set class to matched */
     function lockCards() {
         cardList[cardList.length-1].classList.add("match");
         cardList[cardList.length-2].classList.add("match");
         cardList[cardList.length-1].classList.remove("show", "open");
         cardList[cardList.length-2].classList.remove("show", "open");
     }
+    
+    /* Remove dismatched cards */
     function removeCards() {
         cardList[cardList.length-1].classList.remove("show", "open");
         cardList[cardList.length-2].classList.remove("show", "open");
         cardList.pop();
         cardList.pop();
     }
+    
+    /* Prevent double click on one card */
     function preventDoubleClick() {
         if (card[i].classList.contains("show")) {
             card[i].removeEventListener("click", clickCards);
         }
     }
+    
+    /* Display moves count in score board and finish pop-up */
     function countMoves() {
         moves[0].textContent = parseInt(click/2);
         moves[1].textContent = parseInt(click/2);
     }
+    
+    /* Display final score */
     function displayFinalScore() {
         finalScore.classList.add("final-score-show");
+        clearTimeout(t);
+        var finalTime = document.querySelector(".stopwatch-final");
+        finalTime.textContent = stopwatch.textContent;
     }
     
 }
+
+/* Add action on click restart */
 restart.addEventListener("click" , function(e) {
     stars = document.querySelectorAll(".fa-star");
     
     if (card.length == 16) {
         finalScore.classList.remove("final-score-show");
     }
+    
     moves.textContent = 0;
     click = 0;
     moves[0].textContent = 0;
     moves[1].textContent = 0;
+    
+    /* Reset card class */
     for (let j = 0; j < card.length; j++) {
         card[j].className = "card";
         cardList = [];
     }
+    
+    /* Remove and set default stars */
     if (stars.length < 10) {
         for (let k = stars.length-1; k >= 0; k--) {
             if (stars[k].parentNode) {
@@ -220,7 +242,33 @@ restart.addEventListener("click" , function(e) {
         }
     }
     
+    /* Restart deck and position of cards */
+    setTimeout(startMatchingGame, 300);
     
-    setTimeout(startMatchinGame, 300);
+    /* Restart StopWatch */
+    stopwatch.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+    clearTimeout(t);
 });
+    
+    
+/* Stopwatch from https://jsfiddle.net/Daniel_Hug/pvk6p/ */
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    stopwatch.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+ 
 }

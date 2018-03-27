@@ -139,3 +139,7 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.stopwatch {
+    padding: 30px;
+}
