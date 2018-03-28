@@ -101,7 +101,7 @@ h1 {
     width: 100%;
     height: 93.6%;
     position: absolute;
-    padding-top: 30%;
+    padding-top: 22%;
     border-radius: 10px;
     background: #fcfcfc;
     border: 3px solid #eee;
@@ -142,4 +142,45 @@ h1 {
 
 .stopwatch {
     padding: 30px;
+}
+
+.replay {
+    padding: 12px 20px;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 4px;
+    position: relative;
+    transition: 0.2s;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    margin-top: 5%
+}
+
+.replay::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 100%;
+    background-color: transparent;
+    left: 0;
+    top: 0;
+    color: #fff;
+    z-index: -1;
+    transform: translateX(-100%);
+    border-right: 50px solid transparent;
+    border-bottom: 80px solid #02ccba;
+    transition: 0.5s;
+    overflow: hidden;
+    
+}
+
+.replay:hover {
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.replay:hover:before {
+    transform: translateX(0%);
 }

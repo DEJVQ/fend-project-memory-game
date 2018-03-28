@@ -87,7 +87,8 @@ const starsAddMain = document.querySelector(".score-panel .stars");
 const starsAddFinal = document.querySelector(".final-score .stars");
 
 const finalScore = document.querySelector(".final-score");
-const restart = document.querySelector(".restart");
+const restart = document.querySelectorAll(".restart");
+//const replayButton = document.querySelector(".replay");
 
 const preventMultiClick = document.createElement("div");
 preventMultiClick.classList.add("non-clickable");
@@ -204,50 +205,52 @@ for (let i = 0; i < card.length; i++) {
     
 }
 
-/* Add action on click restart */
-restart.addEventListener("click" , function(e) {
-    stars = document.querySelectorAll(".fa-star");
-    
-    if (card.length == 16) {
-        finalScore.classList.remove("final-score-show");
-    }
-    
-    moves.textContent = 0;
-    click = 0;
-    moves[0].textContent = 0;
-    moves[1].textContent = 0;
-    
-    /* Reset card class */
-    for (let j = 0; j < card.length; j++) {
-        card[j].className = "card";
-        cardList = [];
-    }
-    
-    /* Remove and set default stars */
-    if (stars.length < 10) {
-        for (let k = stars.length-1; k >= 0; k--) {
-            if (stars[k].parentNode) {
-                stars[k].parentNode.removeChild(stars[k]);
+/* Add action on click restart and replay */
+for (let p = 0; p < restart.length; p++) {
+    restart[p].addEventListener("click" , function(e) {
+        stars = document.querySelectorAll(".fa-star");
+
+        if (card.length == 16) {
+            finalScore.classList.remove("final-score-show");
+        }
+
+        moves.textContent = 0;
+        click = 0;
+        moves[0].textContent = 0;
+        moves[1].textContent = 0;
+
+        /* Reset card class */
+        for (let j = 0; j < card.length; j++) {
+            card[j].className = "card";
+            cardList = [];
+        }
+
+        /* Remove and set default stars */
+        if (stars.length < 10) {
+            for (let k = stars.length-1; k >= 0; k--) {
+                if (stars[k].parentNode) {
+                    stars[k].parentNode.removeChild(stars[k]);
+                }
+            }
+
+            for (let l = 0; l < 3; l++) {
+                starsAddMain.children[l].innerHTML = star;
+                starsAddFinal.children[l].innerHTML = star;
+                stars = document.querySelectorAll(".fa-star");
             }
         }
-        
-        for (let l = 0; l < 3; l++) {
-            starsAddMain.children[l].innerHTML = star;
-            starsAddFinal.children[l].innerHTML = star;
-            stars = document.querySelectorAll(".fa-star");
-        }
-    }
-    
-    /* Restart deck and position of cards */
-    setTimeout(startMatchingGame, 300);
-    
-    /* Restart StopWatch */
-    stopwatch.textContent = "00:00:00";
-    seconds = 0; 
-    minutes = 0; 
-    hours = 0;
-    clearTimeout(tick);
-});
+
+        /* Restart deck and position of cards */
+        setTimeout(startMatchingGame, 300);
+
+        /* Restart StopWatch */
+        stopwatch.textContent = "00:00:00";
+        seconds = 0; 
+        minutes = 0; 
+        hours = 0;
+        clearTimeout(tick);
+    });
+}
     
 
 function countTime() {
