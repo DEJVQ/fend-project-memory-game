@@ -106,7 +106,11 @@ for (let i = 0; i < card.length; i++) {
     /* Card on click Event */
     card[i].addEventListener("click", function clickCards(e) {
         
-        preventDoubleClick();
+        //preventDoubleClick();
+        if (card[i].classList.contains("show")) {
+            return;
+        }
+        
         displaySymbol();
         addCardToList();
         
@@ -137,7 +141,8 @@ for (let i = 0; i < card.length; i++) {
                 setTimeout(removeCards, 700);
             }
         }
-        
+        let b;
+        b;
         /* Display Final Score */
         if ((cardList.length) == 16) {
             displayFinalScore();
@@ -181,12 +186,6 @@ for (let i = 0; i < card.length; i++) {
         cardList.pop();
     }
     
-    /* Prevent double click on one card */
-    function preventDoubleClick() {
-        if (card[i].classList.contains("show")) {
-            card[i].removeEventListener("click", clickCards);
-        }
-    }
     
     /* Display moves count in score board and finish pop-up */
     function countMoves() {
